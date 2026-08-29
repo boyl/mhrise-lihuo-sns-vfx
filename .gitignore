@@ -1,0 +1,6 @@
+.work/
+dist/
+*.log
+*.tmp
+*.bak
+.DS_Store

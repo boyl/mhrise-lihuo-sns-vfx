@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "editor": {
+    "name": "010 Editor",
+    "minimumVersion": "16.0.0",
+    "download": "https://www.sweetscape.com/download/",
+    "redistribute": false
+  },
+  "template": {
+    "repository": "https://github.com/NSACloud/MHR-EFX-Template",
+    "commit": "cfb34d4c7448935ddc5d35b0ba1acfdfda2d1359",
+    "templatePath": "RISE_EFX.bt",
+    "templateSha256": "81AEE9FDECFD5166A621DCEF1E73B85057F48050C599C7610962844AA24B4ADB",
+    "colorScriptPath": "EFX_COLOR_CHANGE.1sc",
+    "colorScriptSha256": "BF431699ED9A2F804289F7B7184574EDC2AE017DF7308D84533DB32CA2658083",
+    "redistribute": false,
+    "licenseStatus": "仓库未声明许可证，仅允许开发者从原地址自行取得并在本机使用"
+  }
+}

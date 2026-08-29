@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "palette": {
+    "ember": "#7A160E",
+    "outerFlame": "#E43C17",
+    "hotFlame": "#FF7A24",
+    "whiteGoldCore": "#FFF0B0"
+  },
+  "tiers": {
+    "normal": {
+      "description": "细窄橙红焰轨与少量暗红余烬",
+      "maxLifetimeSeconds": 0.45,
+      "maxScale": 0.8,
+      "maxConcurrentPerPlayer": 4
+    },
+    "finisher": {
+      "description": "白金焰芯、赤红外焰与短促爆燃",
+      "maxLifetimeSeconds": 0.8,
+      "maxScale": 1.15,
+      "maxConcurrentPerPlayer": 3
+    },
+    "signature": {
+      "description": "火环、上升火柱或落地爆燃",
+      "maxLifetimeSeconds": 1.2,
+      "maxScale": 1.5,
+      "maxConcurrentPerPlayer": 2
+    }
+  },
+  "globalLimits": {
+    "maxConcurrentPerPlayer": 6,
+    "stopSpawningWhenWeaponIsNotSwordAndShield": true,
+    "persistentLoopingParticlesAllowed": false
+  }
+}
