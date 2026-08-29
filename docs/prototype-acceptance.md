@@ -2,7 +2,7 @@
 
 ## 最快确认视觉方向
 
-使用 Fluffy Mod Manager 安装 `dist/Lihuo-SnS-Core-0.1.0-prototype.zip`。确认没有同时启用任何诊断包或 Enhanced 包。
+开发验收优先解压 `dist/Lihuo-SnS-Core-0.1.0-prototype-Installer.zip`，完全退出游戏后双击 `INSTALL.cmd`。安装器只写入清单中的 10 个片手 EFX，并在完成前逐一复核 SHA-256；重复运行不会重复叠加文件。也可使用 Fluffy Mod Manager 安装 `dist/Lihuo-SnS-Core-0.1.0-prototype.zip`。两种方式只能选择一种，并确认没有同时启用任何诊断包或 Enhanced 包。
 
 进入训练场后依次录制：
 
@@ -30,4 +30,4 @@
 
 ## 回退
 
-在 Fluffy 中禁用或卸载候选包即可恢复原始 EFX。若同时安装过其他特效 Mod，先由 Fluffy 执行重新读取游戏存档/文件，再只启用一个候选进行对照。
+使用开发安装器时，完全退出游戏后双击同一目录中的 `UNINSTALL.cmd`；卸载器会先核对当前安装文件，拒绝覆盖测试期间被其他 Mod 改写的文件，并恢复安装前备份。使用 Fluffy 时，在 Fluffy 中禁用或卸载候选包即可恢复原始 EFX。若同时安装过其他特效 Mod，先由 Fluffy 执行重新读取游戏存档/文件，再只启用一个候选进行对照。

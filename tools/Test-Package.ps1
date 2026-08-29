@@ -19,7 +19,7 @@ $zip = [IO.Compression.ZipFile]::OpenRead((Resolve-Path -LiteralPath $PackagePat
 try {
     $entries = @($zip.Entries | Where-Object { $_.FullName -and -not $_.FullName.EndsWith('/') })
     foreach ($entry in $entries) {
-        $path = $entry.FullName.Replace('\\', '/')
+        $path = $entry.FullName.Replace('\', '/')
         $allowed = $path -eq 'modinfo.ini' -or
             $path -match '^natives/STM/vfx/editor/efd_pl/efd_s-swd/[^/]+\.efx\.2818730$' -or
             ($Variant -eq 'Enhanced' -and $path -match '^reframework/autorun/LihuoSnSVfx/[^/]+\.lua$')

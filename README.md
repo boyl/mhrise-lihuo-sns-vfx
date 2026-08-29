@@ -14,6 +14,7 @@
 - `core-assets/`：修改后的片手专属 EFX 与视觉配方。
 - `enhanced-runtime/`：REFramework 动作探针及后续派发边界。
 - `tools/`：提取、工具链诊断、构建与包验证。
+- `installer/`：Core 原型的可验证安装与安全卸载入口。
 - `tests/`：离线契约测试。
 - `docs/`：动作映射、开发步骤和人工验收。
 - `.work/`：原始游戏资源与证据，不纳入 Git。
@@ -26,6 +27,7 @@ pwsh ./tools/Extract-CoreAssets.ps1
 pwsh ./tools/Test-EfxToolchain.ps1
 pwsh ./tools/New-DiagnosticPrototypes.ps1
 pwsh ./tools/Build-ActionProbePackage.ps1
+pwsh ./tools/Build-PrototypeInstaller.ps1
 pwsh ./tests/Run-All.ps1
 ```
 

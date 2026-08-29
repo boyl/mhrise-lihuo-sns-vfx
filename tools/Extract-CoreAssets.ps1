@@ -67,7 +67,7 @@ $records = foreach ($relative in $paths) {
     $full = Join-Path $originalRoot $relative
     if (-not (Test-Path -LiteralPath $full)) { throw "提取后缺少：$relative" }
     $item = Get-Item -LiteralPath $full
-    [ordered]@{ path = $relative.Replace('\\', '/'); size = $item.Length; sha256 = (Get-FileHash -LiteralPath $full -Algorithm SHA256).Hash }
+    [ordered]@{ path = $relative.Replace('\', '/'); size = $item.Length; sha256 = (Get-FileHash -LiteralPath $full -Algorithm SHA256).Hash }
 }
 $manifest = [ordered]@{
     schemaVersion = 1
