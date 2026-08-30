@@ -4,7 +4,7 @@ local OUTPUT_PATH = "LihuoSnSVfx-action-probe.json"
 local MAX_EVENTS = 512
 local SAMPLE_INTERVAL_FRAMES = 2
 local EXPECTED_GAME_NAME = "MHRise"
-local SWORD_AND_SHIELD_WEAPON_TYPE = 1
+local SWORD_AND_SHIELD_WEAPON_TYPE = 8
 
 local state = {
     frame = 0,

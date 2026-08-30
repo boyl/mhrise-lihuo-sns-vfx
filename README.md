@@ -5,9 +5,18 @@
 ## 当前阶段
 
 - 已建立独立提取、哈希、动作映射、构建和包验证链路。
-- `Core` 为 Fluffy Mod Manager 兼容的纯资源版，不要求 REFramework。
-- `Enhanced` 仅在 Core 视觉验收后接入；当前只提供只读动作探针，不生成特效。
+- 当前公开下载物是 `0.4.0` 只读诊断包，需要 REFramework，**不会显示离火特效**。
+- 早期 `Core` 纯资源原型命中了豪鬼外观专用 EFX，不能满足“所有片手剑、不依赖外观”的目标，已停止作为可用方案分发。
+- 正式版将基于游戏实际创建的有效效果上下文实现；完成实机可见效果前不发布稳定版。
 - 两个版本最终互斥，不得同时安装。
+
+## 下载与安装
+
+- 下载页面：[GitHub Releases](https://github.com/boyl/mhrise-lihuo-sns-vfx/releases)。
+- 当前文件：`Lihuo-SnS-Action-Probe-0.4.0-diagnostic.zip`。
+- 完整步骤：[安装、手动复制、卸载与诊断报告](docs/installation.md)。
+
+> 当前诊断包的成功标准是生成 JSON 报告，不是出现火焰特效。需要可见离火效果的玩家请等待正式候选版。
 
 ## 目录
 

@@ -3,6 +3,62 @@ param()
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+$repoRoot = Split-Path -Parent $PSScriptRoot
+$runtimeProbeLoader = Join-Path $repoRoot 'enhanced-runtime/reframework/autorun/LihuoSnSVfxRuntimeProbe.lua'
+$runtimeProbeModule = Join-Path $repoRoot 'enhanced-runtime/reframework/autorun/LihuoSnSVfx/runtime_probe.lua'
+
+if (-not (Test-Path -LiteralPath $runtimeProbeLoader -PathType Leaf)) {
+    throw '缺少 REFramework autorun 根入口：LihuoSnSVfxRuntimeProbe.lua'
+}
+if (-not (Test-Path -LiteralPath $runtimeProbeModule -PathType Leaf)) {
+    throw '缺少运行时探针模块：runtime_probe.lua'
+}
+$loaderText = Get-Content -LiteralPath $runtimeProbeLoader -Raw
+if ($loaderText -notmatch 'pcall\(require,\s*"LihuoSnSVfx\.runtime_probe"\)') {
+    throw '运行时探针根入口未加载正确模块。'
+}
+$runtimeProbeText = Get-Content -LiteralPath $runtimeProbeModule -Raw
+if ($runtimeProbeText -notmatch 'SWORD_AND_SHIELD_WEAPON_TYPE\s*=\s*8' -or
+    $runtimeProbeText -notmatch 'snow\.player\.ShortSword') {
+    throw '片手运行时身份必须同时使用实机枚举 8 与 snow.player.ShortSword。'
+}
+$dispatchProbe = Join-Path $repoRoot 'enhanced-runtime/reframework/autorun/LihuoSnSVfx/effect_dispatch_probe.lua'
+$dispatchLoader = Join-Path $repoRoot 'enhanced-runtime/reframework/autorun/LihuoSnSVfxDispatchProbe.lua'
+if (-not (Test-Path -LiteralPath $dispatchProbe -PathType Leaf) -or
+    -not (Test-Path -LiteralPath $dispatchLoader -PathType Leaf)) {
+    throw '缺少单次特效派发探针及其 autorun 根入口。'
+}
+$dispatchText = Get-Content -LiteralPath $dispatchProbe -Raw
+if ($dispatchText -notmatch 'single_bounded_visible_effect_dispatch' -or
+    $dispatchText -notmatch 'state\.attempted\s*=\s*true') {
+    throw '特效派发探针必须保留单次有界执行门禁。'
+}
+if ($dispatchText -notmatch 'resource:create_holder\("via\.effect\.EffectResourceHolder"\)' -or
+    $dispatchText -notmatch 'value:add_ref\(\)') {
+    throw '特效资源必须使用 REFramework 的 REResource 持有器与显式引用契约。'
+}
+$requestProbe = Join-Path $repoRoot 'enhanced-runtime/reframework/autorun/LihuoSnSVfx/effect_request_probe.lua'
+$requestLoader = Join-Path $repoRoot 'enhanced-runtime/reframework/autorun/LihuoSnSVfxRequestProbe.lua'
+if (-not (Test-Path -LiteralPath $requestProbe -PathType Leaf) -or
+    -not (Test-Path -LiteralPath $requestLoader -PathType Leaf)) {
+    throw '缺少 ObjectEffectManager 请求记录器及其 autorun 根入口。'
+}
+$requestText = Get-Content -LiteralPath $requestProbe -Raw
+foreach ($required in @(
+    'read_only_player_object_effect_request_hook',
+    'requestEffectFromFsm(System.UInt32, System.UInt32, System.Int32)',
+    'requestEffectFromFsm(System.UInt32, System.Int32)',
+    'requestEffectFromFsmOrSequence(System.UInt32, System.UInt32, System.Int32)',
+    'address ~= state.target_manager_address'
+)) {
+    if (-not $requestText.Contains($required)) { throw "特效请求记录器缺少契约：$required" }
+}
+foreach ($forbidden in @('sdk.call_native_func', 'createEffectAutoDestroy', 'setResources')) {
+    if ($requestText -match [regex]::Escape($forbidden)) {
+        throw "只读特效请求记录器包含禁止能力：$forbidden"
+    }
+}
 if ($PSVersionTable.PSVersion.Major -lt 7) { throw '需要 PowerShell 7。' }
 $repoRoot = Split-Path -Parent $PSScriptRoot
 
