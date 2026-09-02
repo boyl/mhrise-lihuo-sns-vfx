@@ -1,6 +1,6 @@
 # 安装、卸载与验证
 
-本文适用于 `Lihuo-SnS-D-Hardening-0.5.0-d-candidate.1.zip`。该候选会显示离火攻击特效，但不会修改伤害、动作、判定、联机状态或存档。
+本文适用于正式版 `Lihuo-SnS-D-Hardening-0.5.0.zip`。它会显示离火攻击特效，但不会修改伤害、动作、判定、联机状态或存档。
 
 ## 系统和前置要求
 
@@ -23,7 +23,7 @@ C:\Program Files (x86)\Steam\steamapps\common\MonsterHunterRise
 
 1. 完全退出游戏。
 2. 安装并验证上面的三个前置。
-3. 下载并解压 `Lihuo-SnS-D-Hardening-0.5.0-d-candidate.1.zip`。
+3. 下载并解压 `Lihuo-SnS-D-Hardening-0.5.0.zip`。
 4. 进入解压目录，只把其中的 `natives` 和 `reframework` 两个文件夹复制到游戏根目录。
 5. Windows 询问时选择合并文件夹。若提示覆盖已有同路径 Mod 文件，先取消并移除冲突 Mod，不要盲目覆盖。
 6. 启动游戏，装备任意片手剑进入修炼场。
@@ -47,7 +47,7 @@ C:\Program Files (x86)\Steam\steamapps\common\MonsterHunterRise
 不要多套一层压缩包目录。下面这种路径是错误的：
 
 ```text
-<游戏根目录>\Lihuo-SnS-D-Hardening-0.5.0-d-candidate.1\natives\...
+<游戏根目录>\Lihuo-SnS-D-Hardening-0.5.0\natives\...
 ```
 
 ## 自动安全安装（推荐给已安装 PowerShell 7 的用户）
@@ -58,7 +58,7 @@ C:\Program Files (x86)\Steam\steamapps\common\MonsterHunterRise
 pwsh -File .\Install.ps1 -GameRoot 'C:\Program Files (x86)\Steam\steamapps\common\MonsterHunterRise'
 ```
 
-安装器会检查前置、候选冲突、87 个载荷文件的哈希，并为原有同路径文件建立事务备份。Steam 库不在默认位置时替换 `-GameRoot`。
+安装器会检查前置、冲突版本、87 个载荷文件的哈希，并为原有同路径文件建立事务备份。Steam 库不在默认位置时替换 `-GameRoot`。
 
 ## Nexus Mods / Mod 管理器准备
 

@@ -3,7 +3,7 @@
 param(
     [Parameter(Mandatory)][string]$SourcePackage,
     [string]$OutputPath = '',
-    [string]$Version = '0.5.0-d-candidate.1'
+    [string]$Version = '0.5.0'
 )
 
 Set-StrictMode -Version Latest
@@ -226,12 +226,12 @@ try {
     Copy-Item -LiteralPath (Join-Path $repoRoot 'tools\package\d-hardening\Install.ps1') -Destination (Join-Path $stage 'Install.ps1')
     Copy-Item -LiteralPath (Join-Path $repoRoot 'tools\package\d-hardening\Uninstall.ps1') -Destination (Join-Path $stage 'Uninstall.ps1')
     @(
-        "离火片手 D-hardening 全动作候选 $Version"
+        "离火片手攻击特效 $Version"
         ''
         "用途：覆盖片手 Bank100 的 $($Recipes.Count) 个已审计攻击动作，分别派发空击与命中特效。"
         '动作配方分为普通、终结和招牌三级；Motion108（旋风刈）仍作为基准验证配方。'
         '所有 set_effect 调用显式 sync=false，不发送网络特效。'
-        '候选包含原包 84 个原生资源的完整闭包，以及我方 loader/module/config；不包含或执行原 ShortSwordVfx.lua。'
+        '正式包包含已审计输入的 84 个原生资源完整闭包，以及我方 loader/module/config；不包含或执行原 ShortSwordVfx.lua。'
         '前置：REFramework、FirstNatives、yun_modules。安装器拒绝 A/B/C/原 D 混装并提供事务回滚。'
         ''
         '手动安装：完全退出游戏，把本压缩包内的 natives 和 reframework 两个文件夹复制到 MonsterHunterRise.exe 所在目录并合并。'
