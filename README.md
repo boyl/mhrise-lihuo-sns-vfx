@@ -1,27 +1,36 @@
 # 离火片手攻击特效 Mod
 
-面向 Steam《怪物猎人：崛起：曙光》16.0.2.0 的片手剑本地视觉 Mod。项目只重编排游戏原生火焰、余烬、刀光与爆燃组件，不改变伤害、动作、判定、网络状态或存档。
+面向 Steam《怪物猎人：崛起：曙光》16.0.2.0 的片手剑本地视觉 Mod。当前 D 候选对所有片手剑生效，不依赖指定武器或防具外观；它只改变本机攻击视觉，不修改伤害、动作、判定、网络状态或存档。
 
-## 当前阶段
+## 当前下载
 
-- 已建立独立提取、哈希、动作映射、构建和包验证链路。
-- 当前公开下载物是 `0.4.0` 只读诊断包，需要 REFramework，**不会显示离火特效**。
-- 早期 `Core` 纯资源原型命中了豪鬼外观专用 EFX，不能满足“所有片手剑、不依赖外观”的目标，已停止作为可用方案分发。
-- 正式版将基于游戏实际创建的有效效果上下文实现；完成实机可见效果前不发布稳定版。
-- 两个版本最终互斥，不得同时安装。
+- 版本：`v0.5.0-d-candidate.1`。
+- 文件：`Lihuo-SnS-D-Hardening-0.5.0-d-candidate.1.zip`。
+- 下载：[GitHub Releases](https://github.com/boyl/mhrise-lihuo-sns-vfx/releases)。
+- 完整步骤：[安装、手动复制、验证、卸载与故障排查](docs/installation.md)。
 
-## 下载与安装
+这是公开候选版，不是最终稳定版。已经实机验证飞影空击/命中、升龙与下坠持续效果释放，以及 39/39 动作配方；发布前门禁仍保留长时间连续狩猎回归。
 
-- 下载页面：[GitHub Releases](https://github.com/boyl/mhrise-lihuo-sns-vfx/releases)。
-- 当前文件：`Lihuo-SnS-Action-Probe-0.4.0-diagnostic.zip`。
-- 完整步骤：[安装、手动复制、卸载与诊断报告](docs/installation.md)。
+## 功能
 
-> 当前诊断包的成功标准是生成 JSON 报告，不是出现火焰特效。需要可见离火效果的玩家请等待正式候选版。
+- 覆盖 39 个片手 Bank100 攻击动作，分别派发空击与命中特效。
+- 普通攻击、终结技和招牌动作使用不同强度的火焰、余烬、刀光与爆燃。
+- 一次性效果由游戏回收；持续效果在动作切换、动作重启和脚本重载时显式释放。
+- 所有派发均为本地视觉，不向联机队友同步特效。
+- 内置事务安装、文件哈希校验、冲突拒绝与安全回滚。
+
+## 前置要求
+
+- [REFramework](https://github.com/praydog/REFramework)。
+- [FirstNatives](https://www.nexusmods.com/monsterhunterrise/mods/848)。
+- [yun_modules](https://github.com/yun-wulian/yun_modules)。
+
+这些前置不会打包进本项目下载物。详细放置路径见安装文档。
 
 ## 目录
 
-- `core-assets/`：修改后的片手专属 EFX 与视觉配方。
-- `enhanced-runtime/`：REFramework 动作探针及后续派发边界。
+- `core-assets/`：片手 EFX 研究、映射与视觉配方。
+- `enhanced-runtime/`：REFramework 动作识别、派发和生命周期边界。
 - `tools/`：提取、工具链诊断、构建与包验证。
 - `installer/`：Core 原型的可验证安装与安全卸载入口。
 - `tests/`：离线契约测试。
@@ -40,9 +49,7 @@ pwsh ./tools/Build-PrototypeInstaller.ps1
 pwsh ./tests/Run-All.ps1
 ```
 
-生成真正的视觉原型还需要本机安装 010 Editor，并由开发者单独取得 `MHR-EFX-Template`。第三方模板不复制到本仓库，也不是玩家安装前置。
-
-完整流程见 [开发与候选验证流程](docs/development-workflow.md)，首轮实机操作见 [原型验收说明](docs/prototype-acceptance.md)。
+开发流程见 [开发与候选验证流程](docs/development-workflow.md)。010 Editor 和 EFX 模板只用于开发，不是玩家安装前置。
 
 ## 许可与资产
 
