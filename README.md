@@ -1,5 +1,3 @@
-![GitHub Release Downloads](https://img.shields.io/github/downloads/boyl/mhrise-lihuo-sns-vfx/total?label=Downloads&color=blue)
-
 # 离火片手攻击特效 Mod
 
 面向 Steam《怪物猎人：崛起：曙光》16.0.2.0 的片手剑本地视觉 Mod。正式版对所有片手剑生效，不依赖指定武器或防具外观；它只改变本机攻击视觉，不修改伤害、动作、判定、网络状态或存档。
